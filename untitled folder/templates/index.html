@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="as">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অসমীয়া প্ৰগ্ৰামিং প্লেটফৰ্ম - Assamese Programming Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .panel {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .panel h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .examples {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .example-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+
+        .example-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .run-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .run-btn:active {
+            transform: scale(0.98);
+        }
+
+        .output-box {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            min-height: 150px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .error {
+            color: #ff6b6b;
+        }
+
+        .success {
+            color: #51cf66;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .info-section {
+            background: #e7f5ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-section h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .info-section p {
+            line-height: 1.6;
+            color: #495057;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇮🇳 অসমীয়া প্ৰগ্ৰামিং প্লেটফৰ্ম</h1>
+            <p>Assamese Programming Platform - Code in your mother tongue!</p>
+        </div>
+
+        <div class="main-content">
+            <div class="panel">
+                <h2>📝 অসমীয়া কোড (Assamese Code)</h2>
+                
+                <div class="examples">
+                    <button class="example-btn" onclick="loadExample('hello_world')">Hello World</button>
+                    <button class="example-btn" onclick="loadExample('calculator')">Calculator</button>
+                    <button class="example-btn" onclick="loadExample('loop')">Loop</button>
+                    <button class="example-btn" onclick="loadExample('conditional')">If-Else</button>
+                </div>
+
+                <textarea id="assamese-code" placeholder="ইয়াত আপোনাৰ অসমীয়া কোড লিখক... (Write your Assamese code here...)">প্ৰিণ্ট("নমস্কাৰ পৃথিৱী!")</textarea>
+                
+                <button class="run-btn" onclick="runCode()">▶️ চলাওক (Run Code)</button>
+
+                <div class="info-section">
+                    <h3>📚 Keywords Guide</h3>
+                    <p><strong>প্ৰিণ্ট</strong> - print | <strong>যদি</strong> - if | <strong>নহলে</strong> - else<br>
+                    <strong>প্ৰতিটোৰ বাবে</strong> - for | <strong>পৰিসৰ</strong> - range | <strong>ভিতৰত</strong> - in</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>🐍 Python Translation</h2>
+                <textarea id="python-code" readonly placeholder="Transpiled Python code will appear here..."></textarea>
+
+                <h2 style="margin-top: 20px;">💻 Output</h2>
+                <div id="output" class="output-box">Output will appear here...</div>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Running code...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadExample(exampleName) {
+            try {
+                const response = await fetch(`/examples/${exampleName}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('assamese-code').value = data.code;
+                    document.getElementById('python-code').value = '';
+                    document.getElementById('output').textContent = 'Click "Run Code" to see output...';
+                    document.getElementById('output').className = 'output-box';
+                }
+            } catch (error) {
+                console.error('Error loading example:', error);
+            }
+        }
+
+        async function runCode() {
+            const assameseCode = document.getElementById('assamese-code').value;
+            const pythonCodeBox = document.getElementById('python-code');
+            const outputBox = document.getElementById('output');
+            const loadingDiv = document.getElementById('loading');
+
+            if (!assameseCode.trim()) {
+                outputBox.textContent = 'Error: Please enter some code first!';
+                outputBox.className = 'output-box error';
+                return;
+            }
+
+            // Show loading
+            loadingDiv.style.display = 'block';
+            outputBox.textContent = 'Running...';
+            outputBox.className = 'output-box';
+
+            try {
+                const response = await fetch('/transpile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ code: assameseCode })
+                });
+
+                const data = await response.json();
+                loadingDiv.style.display = 'none';
+
+                if (data.success) {
+                    pythonCodeBox.value = data.python_code;
+                    outputBox.textContent = data.output || 'Program executed successfully (no output)';
+                    outputBox.className = 'output-box success';
+                } else {
+                    pythonCodeBox.value = data.python_code || '';
+                    outputBox.textContent = `Error: ${data.error}`;
+                    outputBox.className = 'output-box error';
+                }
+            } catch (error) {
+                loadingDiv.style.display = 'none';
+                outputBox.textContent = `Network Error: ${error.message}`;
+                outputBox.className = 'output-box error';
+            }
+        }
+
+        // Allow Ctrl+Enter to run code
+        document.getElementById('assamese-code').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                runCode();
+            }
+        });
+    </script>
+</body>
+</html>
